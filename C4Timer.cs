@@ -92,6 +92,12 @@ public class C4Timer : BasePlugin, IPluginConfig<C4TimerConfig>
 
         Config.TimerStarting = Math.Clamp(Config.TimerStarting, 0, TimerLength);
 
+        if(CountdownToExplosion is not null)
+        {
+            CountdownToExplosion.Kill();
+            Timers.Remove(CountdownToExplosion);
+        } 
+
         CountdownToExplosion = new Timer(1.0f, CountdownToExplosionC4, TimerFlags.REPEAT);
 
         Timers.Add(CountdownToExplosion);
